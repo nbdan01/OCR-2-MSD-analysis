@@ -77,9 +77,6 @@ TThereconvp =ToutGGg(isnan(XXCg)==0 & isnan(YYCg)==0 );
 % Position when there is transport alphapar > 1.4
 threshold = 1.4;
 Xxhereconvtt = Xxhereconv(AAhereconv>=threshold); % Selection de position when alphaparallel up to 1.3
-% Position when this is not transport
-% Xxherecondtt = Xxhereconv(AAhereconv<threshold); % Selection de position when alphaparallel up to 1.3
-% Yyherecondtt = Yyhereconv(AAhereconv<threshold); % Selection de position when alphaparallel up to 1.3
 
 % Calulate the diffusion coefficient everywhere
 % 'MSD' per for three time lag
@@ -214,17 +211,17 @@ plot(smooth(Diffusion_coefficient_per_mean_std(1:end,1),1),smooth(Diffusion_coef
 xlabel('Positions \mum')
 ylabel('D \mum^2/s')
 set(gca,'fontsize',14)
-saveas(96,[FolderSavehere,'Diffusion_coefficient.fig'])
-saveas(96,[FolderSavehere,'Diffusion_coefficient.png'])
+saveas(2,[FolderSavehere,'Diffusion_coefficient.fig'])
+saveas(2,[FolderSavehere,'Diffusion_coefficient.png'])
 
 % Save .mat file
-save([FolderSavehere,'Results.mat'])
+save([FolderSavehere,'Results_compilation.mat'])
 %%
-%  Tx8= table(smooth(Distancemeande_e5a1(1:end-1,1),1),smooth(Distancemeande_e5a1(1:end-1,2),avvalue),smooth(Distancemeande_e5a1(1:end-1,2)+Distancemeande_e5a1(1:end-1,3),avvalue),smooth(Distancemeande_e5a1(1:end-1,2)-Distancemeande_e5a1(1:end-1,3),avvalue), 'VariableNames', { 'Position_um','D_par_um2ps', 'D_par_um2ps_plus_sem', 'D_par_um2ps_minus_sem'} )
-% writetable(Tx8, [FolderSavehere,'Parallel_Diffusion_coefficient_averagedon60pts_Nperp_5228_Npar_4418_VS_Position.txt'])
+Tx8= table(smooth(Diffusion_coefficient_par_mean_std(1:end,1),1),smooth(Diffusion_coefficient_par_mean_std(1:end,2),avvalue),smooth(Diffusion_coefficient_par_mean_std(1:end,2)+Diffusion_coefficient_par_mean_std(1:end,3),avvalue),smooth(Diffusion_coefficient_par_mean_std(1:end,2)-Diffusion_coefficient_par_mean_std(1:end,3),avvalue), 'VariableNames', { 'Position_um','D_par_um2ps', 'D_par_um2ps_plus_sem', 'D_par_um2ps_minus_sem'} )
+writetable(Tx8, [FolderSavehere,'Parallel_Diffusion_coefficient_VS_Position.txt'])
 % %%
-%  Tx8= table(smooth(Distancemeande_e5a2(1:end-1,1),1),smooth(Distancemeande_e5a2(1:end-1,2),avvalue),smooth(Distancemeande_e5a2(1:end-1,2)+Distancemeande_e5a2(1:end-1,3),avvalue),smooth(Distancemeande_e5a2(1:end-1,2)-Distancemeande_e5a2(1:end-1,3),avvalue), 'VariableNames', { 'Position_um','D_par_um2ps', 'D_par_um2ps_plus_sem', 'D_par_um2ps_minus_sem'} )
-% writetable(Tx8, [FolderSavehere,'Perpendicular_Diffusion_coefficient_averagedon60pts_Nperp_5228_Npar_4418_VS_Position.txt'])
+Tx80= table(smooth(Diffusion_coefficient_per_mean_std(1:end,1),1),smooth(Diffusion_coefficient_per_mean_std(1:end,2),avvalue),smooth(Diffusion_coefficient_per_mean_std(1:end,2)+Diffusion_coefficient_per_mean_std(1:end,3),avvalue),smooth(Diffusion_coefficient_per_mean_std(1:end,2)-Diffusion_coefficient_per_mean_std(1:end,3),avvalue), 'VariableNames', { 'Position_um','D_per_um2ps', 'D_per_um2ps_plus_sem', 'D_per_um2ps_minus_sem'} )
+writetable(Tx80, [FolderSavehere,'Perpendicular_Diffusion_coefficient_VS_Position.txt'])
 %%
 % Plot anterograde and retrograde velocities function of the position by averaging
 % over 10 consecutive X positions
@@ -274,8 +271,14 @@ plot(smooth(Velocity_retrograde(1:end,1),avvalue),smooth(Velocity_retrograde(1:e
 xlabel('Positions \mum')
 ylabel('v \mum/s')
 set(gca,'fontsize',14)
+saveas(3,[FolderSavehere,'Anterograde_and_retrograde_velocities.fig'])
+saveas(3,[FolderSavehere,'Anterograde_and_retrograde_velocities.png'])
 %%
-
+Tx7= table(smooth(Velocity_anterograde(1:end,1),1),smooth(Velocity_anterograde(1:end,2),avvalue),smooth(Velocity_anterograde(1:end,2)+Velocity_anterograde(1:end,3),avvalue),smooth(Velocity_anterograde(1:end,2)-Velocity_anterograde(1:end,3),avvalue), 'VariableNames', { 'Position_um','V_antero_umps', 'V_antero_umps_plus_sem', 'V_antero_umps_minus_sem'} )
+writetable(Tx7, [FolderSavehere,'Anterograde_velocity_VS_Position.txt'])
+% %%
+Tx70= table(smooth(Velocity_retrograde(1:end,1),1),smooth(Velocity_retrograde(1:end,2),avvalue),smooth(Velocity_retrograde(1:end,2)+Velocity_retrograde(1:end,3),avvalue),smooth(Velocity_retrograde(1:end,2)-Velocity_retrograde(1:end,3),avvalue), 'VariableNames', { 'Position_um','V_retro_umps', 'V_retro_umps_plus_sem', 'V_retro_umps_minus_sem'} )
+writetable(Tx70, [FolderSavehere,'Retrograde_velocity_VS_Position.txt'])
 %%
 figure(1)
 [nn,xx] = hist(RESULTSEND(:,3),[-2:0.2:2])
@@ -313,8 +316,8 @@ curveblue =fittedParametersTotal2(4).*exp(-([-10: 0.001:5]-fittedParametersTotal
 
 Percentage_underthecurve_cyan = sum(curvecyan)./(sum(curvecyan)+sum(curveblue))
 Percentage_underthecurve_blue = sum(curveblue)./(sum(curvecyan)+sum(curveblue))
-% Tx5= table([-10: 0.001:5]',curvecyan',curveblue', 'VariableNames', {'Xaxis','curve1','Curve2'} )
-% writetable(Tx5, [FolderSavehere,'fit_Alpha_par_all.txt'])
+Tx5= table([-10: 0.001:5]',curvecyan',curveblue', 'VariableNames', {'Xaxis','curve1','Curve2'} )
+writetable(Tx5, [FolderSavehere,'fit_Alpha_par_values.txt'])
 Tx11= table(RESULTSEND(:,3), 'VariableNames', {'alpha_par_values'} )
 writetable(Tx11, [FolderSavehere,'Alpha_par_values.csv'])
 %%
@@ -350,8 +353,8 @@ saveas(4,[FolderSavehere,'alphaper_all_hist.png'])
 
 curvecyan = fittedParametersTotal2(1).*exp(-([-10: 0.001:5]-fittedParametersTotal2(2)).^2./(2.*(fittedParametersTotal2(3)).^2));
 
-Tx5= table([-10: 0.001:5]',curvecyan', 'VariableNames', {'Xaxis','curve1'} )
-writetable(Tx5, [FolderSavehere,'fit_Alpha_per_all.txt'])
+Tx50= table([-10: 0.001:5]',curvecyan', 'VariableNames', {'Xaxis','curve1'} )
+writetable(Tx50, [FolderSavehere,'fit_Alpha_per_values.txt'])
 Tx10= table(RESULTSEND(:,4), 'VariableNames', {'alpha_per_values'} )
 writetable(Tx10, [FolderSavehere,'Alpha_per_values.csv'])
 
@@ -452,7 +455,7 @@ Scale = 1./siz; % 1 um
 imaAlphaggcpar = imaAlphaggpar;
 
 imaAlphaggcpar(50:50+Scale,298:298+10)= 256
- fi = figure(4)
+ fi = figure(40)
 set(gca,'color','none')
 imshow([imaAlphaggcpar'],[0 2])
 Numbits = 12
@@ -467,8 +470,8 @@ freezeColors
 whitebg('white')
 set(gca,'fontsize',16)
 
-saveas(4,[FolderSavehere,'_Alphamappar.fig'])
-saveas(4,[FolderSavehere,'_Alphamappar.png'],'png')
+saveas(40,[FolderSavehere,'_Alphamappar.fig'])
+saveas(40,[FolderSavehere,'_Alphamappar.png'],'png')
 
 %%
 % Alpha per MAP
@@ -495,254 +498,3 @@ saveas(41,[FolderSavehere,'_Alphamapper.fig'])
 saveas(41,[FolderSavehere,'_Alphamapper.png'],'png')
 %%
 %%
-% ALPHAGLOBALE(ALPHAGLOBALE(:,4)<=0.55 & ALPHAGLOBALE(:,4)>=0.45,[5:13+5])
-lPS = 3.5;
-lTZ = 1.5;
-lDS = 6.5;
-MSDPERGLOBPS =  ALPHAGLOBALE(ALPHAGLOBALE(:,4)<=0.55 & ALPHAGLOBALE(:,4)>=0.45 & ALPHAGLOBALE(:,1)>=lTZ & ALPHAGLOBALE(:,1)<=lPS,[15+13+5:15+13+5+13]);
-MSDPERGLOBPS = MSDPERGLOBPS(MSDPERGLOBPS(:,end)<100,:) ;
-MSDPARGLOBPS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55 & ALPHAGLOBALE(:,3)>=0.45 & ALPHAGLOBALE(:,1)>=lTZ & ALPHAGLOBALE(:,1)<=lPS,[5:15+5-2]);
-MSDPARGLOBPS = MSDPARGLOBPS(MSDPARGLOBPS(:,end)<100,:) ;
-
-MSDPERGLOBDS =  ALPHAGLOBALE(ALPHAGLOBALE(:,4)<=0.55 & ALPHAGLOBALE(:,4)>=0.45 & ALPHAGLOBALE(:,1)>=lPS & ALPHAGLOBALE(:,1)<=lDS,[15+13+5:15+13+5+13]);
-MSDPERGLOBDS = MSDPERGLOBDS(MSDPERGLOBDS(:,end)<100,:) ;
-MSDPARGLOBDS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55 & ALPHAGLOBALE(:,3)>=0.45 & ALPHAGLOBALE(:,1)>=lPS & ALPHAGLOBALE(:,1)<=lDS,[5:15+5-2]);
-MSDPARGLOBDS = MSDPARGLOBDS(MSDPARGLOBDS(:,end)<100,:) ;
-
-MSDPERGLOBt =  ALPHAGLOBALE(ALPHAGLOBALE(:,4)<=0.55 & ALPHAGLOBALE(:,4)>=0.45 & ALPHAGLOBALE(:,1)>=lDS,[15+13+5:15+13+5+13]);
-MSDPERGLOBt = MSDPERGLOBt(MSDPERGLOBt(:,end)<100,:) ;
-MSDPARGLOBt =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55 & ALPHAGLOBALE(:,3)>=0.45 & ALPHAGLOBALE(:,1)>=lDS,[5:15+5-2]);
-MSDPARGLOBt = MSDPARGLOBt(MSDPARGLOBt(:,end)<100,:) ; 
-%  mean(MSDPERGLOB)
-MSDPERGLOBtz =  ALPHAGLOBALE(ALPHAGLOBALE(:,4)<=0.55 & ALPHAGLOBALE(:,4)>=0.45 & ALPHAGLOBALE(:,1)<=lTZ,[15+13+5:15+13+5+13]);
-MSDPERGLOBtz = MSDPERGLOBtz(MSDPERGLOBtz(:,end)<100,:) ;
-MSDPARGLOBtz =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55 & ALPHAGLOBALE(:,3)>=0.45 & ALPHAGLOBALE(:,1)<=lTZ,[5:15+5-2]);
-MSDPARGLOBtz = MSDPARGLOBtz(MSDPARGLOBtz(:,end)<100,:) ; 
-
- %%
- %default =0.5
- alphalinmhere = +0.5 
- alphalinmheretipper = 0.36-0.5;
- alphalinmheretippar = 0.46-0.5;
-  alphalinmheretzper = 0.39-0.5;
- alphalinmheretzpar = 0.65-0.5;
-  alphalinmhereDSper = 0.39-0.5;
- alphalinmhereDSpar = 0.41-0.5;
-   alphalinmherePSper = 0.41-0.5;
- alphalinmherePSpar = 0.47-0.5;
- alphalinm = alphalinmhere+0.5;
-MSDPERGLOBPS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<1.4 & ALPHAGLOBALE(:,4)<=0.55+alphalinmherePSper & ALPHAGLOBALE(:,4)>=0.45+alphalinmherePSper & ALPHAGLOBALE(:,1)>=lTZ & ALPHAGLOBALE(:,1)<=lPS,[15+13+5:15+13+5+13]);
-MSDPERGLOBPS = MSDPERGLOBPS(MSDPERGLOBPS(:,end)<100,:) ;
-MSDPARGLOBPS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55+alphalinmherePSpar & ALPHAGLOBALE(:,3)>=0.45+alphalinmherePSpar & ALPHAGLOBALE(:,1)>=lTZ & ALPHAGLOBALE(:,1)<=lPS,[5:15+5-2]);
-MSDPARGLOBPS = MSDPARGLOBPS(MSDPARGLOBPS(:,end)<100,:) ;
-
-MSDPERGLOBDS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<1.4 & ALPHAGLOBALE(:,4)<=0.55+alphalinmhereDSper & ALPHAGLOBALE(:,4)>=0.45+alphalinmhereDSper & ALPHAGLOBALE(:,1)>=lPS & ALPHAGLOBALE(:,1)<=lDS,[15+13+5:15+13+5+13]);
-MSDPERGLOBDS = MSDPERGLOBDS(MSDPERGLOBDS(:,end)<100,:) ;
-MSDPARGLOBDS =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55+alphalinmhereDSpar & ALPHAGLOBALE(:,3)>=0.45+alphalinmhereDSpar & ALPHAGLOBALE(:,1)>=lPS & ALPHAGLOBALE(:,1)<=lDS,[5:15+5-2]);
-MSDPARGLOBDS = MSDPARGLOBDS(MSDPARGLOBDS(:,end)<100,:) ;
-
-MSDPERGLOBt =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<1.4 & ALPHAGLOBALE(:,4)<=0.55+alphalinmheretipper & ALPHAGLOBALE(:,4)>=0.45+alphalinmheretipper & ALPHAGLOBALE(:,1)>=lDS,[15+13+5:15+13+5+13]);
-MSDPERGLOBt = MSDPERGLOBt(MSDPERGLOBt(:,end)<100,:) ;
-MSDPARGLOBt =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55+alphalinmheretippar & ALPHAGLOBALE(:,3)>=0.45+alphalinmheretippar & ALPHAGLOBALE(:,1)>=lDS,[5:15+5-2]);
-MSDPARGLOBt = MSDPARGLOBt(MSDPARGLOBt(:,end)<100,:) ; 
-%  mean(MSDPERGLOB)
-MSDPERGLOBtz =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<1.4 & ALPHAGLOBALE(:,4)<=0.55+alphalinmheretzper & ALPHAGLOBALE(:,4)>=0.45+alphalinmheretzper & ALPHAGLOBALE(:,1)<=lTZ,[15+13+5:15+13+5+13]);
-MSDPERGLOBtz = MSDPERGLOBtz(MSDPERGLOBtz(:,end)<100,:) ;
-MSDPARGLOBtz =  ALPHAGLOBALE(ALPHAGLOBALE(:,3)<=0.55+alphalinmheretzpar & ALPHAGLOBALE(:,3)>=0.45+alphalinmheretzpar & ALPHAGLOBALE(:,1)<=lTZ,[5:15+5-2]);
-MSDPARGLOBtz = MSDPARGLOBtz(MSDPARGLOBtz(:,end)<100,:) ; 
-Time  = [1:size(mean(MSDPARGLOBtz)',1)].*dt
-%  Tx2= table(Time',mean(MSDPARGLOBtz)',mean(MSDPERGLOBtz)',mean(MSDPARGLOBPS)',mean(MSDPERGLOBPS)',mean(MSDPARGLOBDS)',mean(MSDPERGLOBDS)',mean(MSDPARGLOBt)',mean(MSDPERGLOBt)', 'VariableNames', { 'Lag_Time_s','MSD_par_TZ', 'MSD_per_TZ', 'MSD_par_PS', 'MSD_per_PS', 'MSD_par_DS', 'MSD_per_DS', 'MSD_par_tip', 'MSD_per_tip'} )
-% writetable(Tx2, [FolderSavehere,'MSD_confined_par_per.txt'])
-
- %%
- figure(1)
- hold off
- plot([1:1:14].*dt,mean(MSDPERGLOBPS),'ob','linewidth',2)
- xlabel('\tau')
- ylabel('MSD')
- hold on
- plot([1:1:14].*dt,mean(MSDPARGLOBPS),'or','linewidth',2)
-
- title(['PS \alpha_{//} = ' num2str(alphalinmherePSpar+0.5,'%.2f'),' \alpha_{\perp}  = ' num2str(alphalinmherePSper+0.5,'%.2f')])
- set(gca,'fontsize',20)
-
- XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPERGLOBPS(:,[1:6]));
-Paraset1 = [mean(MSDPERGLOBPS(:,1)),mean(MSDPERGLOBPS(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotal,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-[Paraset1(1),fittedParametersTotal(1)];
-fit_MSD_per_PS = Fit_xi_MSD(fittedParametersTotal,[0:1:10].*dt)
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotal2,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD_2nd_order,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-[Paraset1(1),fittedParametersTotal(1)];
-fit_MSD_per_PS2 = Fit_xi_MSD_2nd_order(fittedParametersTotal2,[0:1:10].*dt)
-
- hold on
- cipar = nlparci(fittedParametersTotal,residual,'jacobian',jacobian)
- dl = fittedParametersTotal(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotal(1))).*dl*1000
-%  Time  = [0:1:10].*dt
-%  Tx2= table(Time',fit_MSD_per_PS', 'VariableNames', { 'Lag_Time_s','fit_MSD_per_PS', 'MSD_per_TZ', 'MSD_par_PS', 'MSD_per_PS', 'MSD_par_DS', 'MSD_per_DS', 'MSD_par_tip', 'MSD_per_tip'} )
-% writetable(Tx2, [FolderSavehere,'fit_MSDper_confined_PS.txt'])
-
-
- plot([0:1:10].*dt,fit_MSD_per_PS,'-b','linewidth',2)
-  XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPARGLOBPS(:,[1:6]));
-Paraset1 = [mean(MSDPARGLOBPS(:,1)),mean(MSDPARGLOBPS(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotalp,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-[Paraset1(1),fittedParametersTotalp(1)];
-fit_MSD_par_PS = Fit_xi_MSD(fittedParametersTotalp,[0:1:10].*dt)
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotalp2,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD_2nd_order,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-[Paraset1(1),fittedParametersTotalp(1)];
-fit_MSD_par_PS2 = Fit_xi_MSD_2nd_order(fittedParametersTotalp2,[0:1:10].*dt)
- hold on
- plot([0:1:10].*dt,fit_MSD_par_PS,'-r','linewidth',2)
-  legend(['\xi_{\perp} = ' num2str(sqrt(fittedParametersTotal(1))*1000,'%.1f'),' nm'],['\xi_{//} = ' num2str(sqrt(fittedParametersTotalp(1))*1000,'%.1f'),' nm'])
-cipar = nlparci(fittedParametersTotalp,residual,'jacobian',jacobian)
- dl = fittedParametersTotalp(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotalp(1))).*dl*1000
-%   saveas(1,[FolderSavehere,'alphaPS =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.fig'])
-% saveas(1,[FolderSavehere,'alphaPS =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.png'])
-[sqrt(fittedParametersTotal(1))*1000 sqrt(fittedParametersTotal2(1))*1000;sqrt(fittedParametersTotalp(1))*1000 sqrt(fittedParametersTotalp2(1))*1000]
-[fittedParametersTotal(2) fittedParametersTotal(2); fittedParametersTotalp(2) fittedParametersTotalp2(2)]
-   %%
- figure(2)
- hold off
- plot([1:1:14].*dt,mean(MSDPERGLOBDS),'ob','linewidth',2)
- xlabel('\tau')
- ylabel('MSD')
- hold on
- plot([1:1:14].*dt,mean(MSDPARGLOBDS),'or','linewidth',2)
-
- title(['DS \alpha_{//} = ' num2str(alphalinmhereDSpar+0.5,'%.2f'),' \alpha_{\perp}  = ' num2str(alphalinmhereDSper+0.5,'%.2f')])
- set(gca,'fontsize',20)
-%  xlim([0 0.6])
- XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPERGLOBDS(:,[1:6]));
-Paraset1 = [mean(MSDPERGLOBDS(:,1)),mean(MSDPERGLOBDS(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotalD,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotal(1)];
-fit_MSD_per_DS = Fit_xi_MSD(fittedParametersTotalD,[0:1:10].*dt)
- hold on
- cipar = nlparci(fittedParametersTotalD,residual,'jacobian',jacobian)
- dl = fittedParametersTotalD(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotalD(1))).*dl*1000
- plot([0:1:10].*dt,fit_MSD_per_DS,'-b','linewidth',2)
-  XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPARGLOBDS(:,[1:6]));
-Paraset1 = [mean(MSDPARGLOBDS(:,1)),mean(MSDPARGLOBDS(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotalDp,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotalp(1)];
-fit_MSD_par_DS = Fit_xi_MSD(fittedParametersTotalDp,[0:1:10].*dt)
- hold on
- plot([0:1:10].*dt,fit_MSD_par_DS,'-r','linewidth',2)
-  legend(['\xi_{\perp} = ' num2str(sqrt(fittedParametersTotalD(1))*1000,'%.1f'),' nm'],['\xi_{//} = ' num2str(sqrt(fittedParametersTotalDp(1))*1000,'%.1f'),' nm'])
-%   saveas(2,[FolderSavehere,'alphaDS =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.fig'])
-% saveas(2,[FolderSavehere,'alphaDS =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.png'])
-cipar = nlparci(fittedParametersTotalDp,residual,'jacobian',jacobian)
- dl = fittedParametersTotalDp(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotalDp(1))).*dl*1000
-[fittedParametersTotalD(2); fittedParametersTotalDp(2)]
-
-  %%
- figure(3)
- hold off
- plot([1:1:14].*dt,mean(MSDPERGLOBt),'ob','linewidth',2)
- xlabel('\tau')
- ylabel('MSD')
- hold on
- plot([1:1:14].*dt,mean(MSDPARGLOBt),'or','linewidth',2)
-
- title(['tip \alpha_{//} = ' num2str(alphalinmheretippar+0.5,'%.2f'),' \alpha_{\perp}  = ' num2str(alphalinmheretipper+0.5,'%.2f')])
- set(gca,'fontsize',20)
-%  xlim([0 0.6])
- XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPERGLOBt(:,[1:6]));
-Paraset1 = [mean(MSDPERGLOBt(:,1)),mean(MSDPERGLOBt(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotalt,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotal(1)];
-fit_MSD_per_tip = Fit_xi_MSD(fittedParametersTotalt,[0:1:10].*dt)
- hold on
- cipar = nlparci(fittedParametersTotalt,residual,'jacobian',jacobian)
- dl = fittedParametersTotalt(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotalt(1))).*dl*1000
-[fittedParametersTotalt(2); fittedParametersTotaltp(2)]
-
- %%
- plot([0:1:10].*dt,fit_MSD_per_tip,'-b','linewidth',2)
-  XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPARGLOBt(:,[1:6]));
-Paraset1 = [mean(MSDPARGLOBt(:,1)),mean(MSDPARGLOBt(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotaltp,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotalp(1)];
-fit_MSD_par_tip = Fit_xi_MSD(fittedParametersTotaltp,[0:1:10].*dt)
- hold on
- plot([0:1:10].*dt,fit_MSD_par_tip,'-r','linewidth',2)
-  legend(['\xi_{\perp} = ' num2str(sqrt(fittedParametersTotalt(1))*1000,'%.1f'),' nm'],['\xi_{//} = ' num2str(sqrt(fittedParametersTotaltp(1))*1000,'%.1f'),' nm'])
-%   saveas(3,[FolderSavehere,'alphatip =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.fig'])
-% saveas(3,[FolderSavehere,'alphatip =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.png'])
-cipar = nlparci(fittedParametersTotaltp,residual,'jacobian',jacobian)
- dl = fittedParametersTotaltp(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotaltp(1))).*dl*1000
-  %%
- figure(4)
- hold off
- plot([1:1:14].*dt,mean(MSDPERGLOBtz),'ob','linewidth',2)
- xlabel('\tau')
- ylabel('MSD')
- hold on
- plot([1:1:14].*dt,mean(MSDPARGLOBtz),'or','linewidth',2)
- title(['TZ \alpha_{//} = ' num2str(alphalinmheretzpar+0.5,'%.2f'),' \alpha_{\perp}  = ' num2str(alphalinmheretzper+0.5,'%.2f')])
- set(gca,'fontsize',20)
-%  xlim([0 0.6])
- XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPERGLOBtz(:,[1:6]));
-Paraset1 = [mean(MSDPERGLOBtz(:,1)),mean(MSDPERGLOBtz(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotaltz,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotal(1)];
-fit_MSD_per_TZ = Fit_xi_MSD(fittedParametersTotaltz,[0:1:10].*dt)
- hold on
- ci = nlparci(fittedParametersTotaltz,residual,'jacobian',jacobian)
- dl = fittedParametersTotaltz(1)'-ci(1)
- dxi = 1./(2.*sqrt(fittedParametersTotaltz(1))).*dl*1000
- plot([0:1:10].*dt,fit_MSD_per_TZ,'-b','linewidth',2)
-  XXTotal = [1:1:6].*dt; % Je prends 30% du temps total
-ydataMSDTotal = mean(MSDPARGLOBtz(:,[1:6]));
-Paraset1 = [mean(MSDPARGLOBtz(:,1)),mean(MSDPARGLOBtz(:,6))];
-
-curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
-[fittedParametersTotaltpz,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_xi_MSD,Paraset1, XXTotal,ydataMSDTotal,[],[],curvefitoptions);   
-% [Paraset1(1),fittedParametersTotalp(1)];
-fit_MSD_par_TZ = Fit_xi_MSD(fittedParametersTotaltpz,[0:1:10].*dt)
- hold on
- plot([0:1:10].*dt,fit_MSD_par_TZ,'-r','linewidth',2)
-  legend(['\xi_{\perp} = ' num2str(sqrt(fittedParametersTotaltz(1))*1000,'%.1f'),' nm'],['\xi_{//} = ' num2str(sqrt(fittedParametersTotaltpz(1))*1000,'%.1f'),' nm'])
-%   saveas(4,[FolderSavehere,'alphaTZ =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.fig'])
-% saveas(4,[FolderSavehere,'alphaTZ =', num2str(alphalinm,'%.1f'),'xi_withalphaparper2.png'])
-[fittedParametersTotaltz(2); fittedParametersTotaltpz(2)]
-
-   Time  = [0:1:10].*dt
- Tx2= table(Time',fit_MSD_par_TZ',fit_MSD_per_TZ',fit_MSD_par_PS',fit_MSD_per_PS',fit_MSD_par_DS',fit_MSD_per_DS',fit_MSD_par_tip',fit_MSD_per_tip', 'VariableNames', { 'Lag_Time_s','fit_MSD_par_TZ', 'fit_MSD_per_TZ', 'fit_MSD_par_PS', 'fit_MSD_per_PS', 'fit_MSD_par_DS', 'fit_MSD_per_DS', 'fit_MSD_par_tip', 'fit_MSD_per_tip'} )
-writetable(Tx2, [FolderSavehere,'fit_MSDperpar_confined.txt'])
-
-fittedParametersTotaltpz-cipar
-cipar = nlparci(fittedParametersTotaltpz,residual,'jacobian',jacobian)
- dl = fittedParametersTotaltpz(1)'-cipar(1)
- dxi = 1./(2.*sqrt(fittedParametersTotaltpz(1))).*dl*1000
-
