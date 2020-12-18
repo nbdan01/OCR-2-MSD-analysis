@@ -3,12 +3,7 @@ close all
 
 Folder_data='C:\Users\noemi\Documents\alpha classification analysis\Data\All_all.xlsx';
 Folder_result='C:\Users\noemi\Documents\alpha classification analysis\Data\Results matlab\All_all\'
-% Folder_data='C:\Users\noemi\Documents\alpha classification analysis\Data\JvK01_transition_zone_Anterograde.xlsx';
-% Folder_result='C:\Users\noemi\Documents\alpha classification analysis\Data\Results matlab\JvK01_transition_zone_Anterograde\'
-% Folder_data='C:\Users\noemi\Documents\alpha classification analysis\Data\JvK01_transition_zone_Retrograde.xlsx';
-% Folder_result='C:\Users\noemi\Documents\alpha classification analysis\Data\Results matlab\JvK01_transition_zone_Retrograde\'
-% Folder_data='C:\Users\noemi\Documents\alpha classification analysis\Data\New_JvK01_DS_trajectories.xlsx';
-% Folder_result='C:\Users\noemi\Documents\alpha classification analysis\Data\Results matlab\New_JvK01_DS_trajectories\'
+
 pxlSize = 0.053; % Pixel Size in um
 dt = 0.1; % Time between 2 consecutive frames in second
 min_number_point_in_traj = 14;
