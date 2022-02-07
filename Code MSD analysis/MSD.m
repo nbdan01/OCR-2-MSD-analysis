@@ -2,7 +2,7 @@ function [LagT,MSD_mean,MSD_std,yfit,p] = MSD(pos,T,numberoflags,time_image,LagT
 
 if (max(size(pos)))^2 > 1%1*2500^2   
     indice = round(T/time_image);
-    X = zeros(max(indice),1)+NaN; % J'ai changé length par max
+    X = zeros(max(indice),1)+NaN; % J'ai changÃ© length par max
     X(indice) = pos(:,1);    
     T = time_image*[1:length(X)];
     
