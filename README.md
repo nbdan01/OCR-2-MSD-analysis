@@ -17,6 +17,24 @@ D and V are smoothed with an sgolay filter of degree 3 to reduce the noise.
 
 - Do the same for the retrograde directed transport if the ratio is different (not the case here).
 
+- Set the different parameters
 
+'''
+% Maximal size of the in-silico cilium
+lim_cilia = 7.5;
+% Ratio between anterograde and retrograde IFT train frequencies
+proba_antero = 1/3;
+% Time between 2 consecutives data points
+dt = 0.1;
+Diff_on = [1 0];
+% Radius of the in-silico cilium
+Radius = 0.1;
+% Size of the sliding window ( MSD) used to analyse experimental data 
+WW =15;
+% Maximal number of steps
+Nstep = 5000;
+% Number of trajectories per position
+maxtraj = 50;
+'''
 
 
