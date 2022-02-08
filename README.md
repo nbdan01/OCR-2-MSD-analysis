@@ -50,6 +50,7 @@ The profiles are saved in the subFolder `Data hist` with the format `Dat_ + numb
 ## Step 3: Manual sorting of the profiles
 - Sort the `.mat` in the subFolder `Data hist` by Creation Date and rename the files using the format `name (1)`, `name (2)`, `name (3)`, ..., `name (50)`...
 
-## Step 4: 
+## Step 4: Select the steady-state
+- Run the script `Steady_state_profiles.mat`
 
 
