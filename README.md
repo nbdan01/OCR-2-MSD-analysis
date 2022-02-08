@@ -35,6 +35,11 @@ WW =15;
 Nstep = 5000;
 % Number of trajectories per position
 maxtraj = 50;
+% Precision of localization
+Precision_localization = 30/1000;
 ```
+Parameters D and V are saved in the subFolder `Parameters`
+Generated trajectories are saved in the subFolder `Trajectories`
+
 
 
