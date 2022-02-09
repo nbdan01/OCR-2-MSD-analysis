@@ -1,15 +1,18 @@
 # OCR-2-MSD-analysis
-Calculate diffifusion coefficient and velocity from SPT trajectories
-- Format of the Data
+Calculate location-dependant diffusion coefficient and velocity from SPT trajectories
+## 1 - Format of the Data
   Use the template provided in this repository in the Folder Data. Par and Ort correspond to the parallele and perpendicular positions 
-  
+## 2 - Extract the power (\alpha) of the time lag (\tau) using MSD
 - Use the script `main_MSD_analysis.m`
-- Set the pixel size `main_MSD_analysis.m` and the integration time `dt`
+- Set the pixel size `pxlSize` and the integration time `dt`
+## 3 - 
+
+
 
 
 
 # Simulation
-## Step 1: Generate the trajectories
+## 1 - Generate the trajectories
 - Use the script `Generate_trajectories.m`
 - Choose the Folder to save the trajectories in the variable `Foldersave`
 
@@ -53,16 +56,16 @@ Note: D and v are smoothed with an sgolay filter of degree 3 to reduce the noise
 Parameters D and V are saved in the subFolder `Parameters`
 Generated trajectories are saved in the subFolder `Trajectories`
 
-## Step 2: Generate the intensity profiles 
+## 2 - Generate the intensity profiles 
 
 - Use the script `Intensity_profiles.m`
 - Set the integration time in the variable `integration_over_time` to integrate/collect/gather the data points over time and generate the intensity profiles
 Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
-## Step 3: Manual renaming of the files
+## 3 - Manual renaming of the files
 - In the subFolder `Data hist`, **Rename** the `name.mat` files with the format `name (1).mat`, `name (2).mat`, `name (3).mat`, ..., `name (50).mat`...
 
-## Step 4: Select the steady-state
+## 4 - Select the steady-state
 - Use the script `Steady_state_intensity_profiles.m`
 - Set the **Parameters** of the profiles
 
