@@ -1,6 +1,12 @@
 # OCR-2-MSD-analysis
 Calculate diffifusion coefficient and velocity from SPT trajectories
-Use the script `main_MSD_analysis.m`
+- Format of the Data
+  Use the template provided in this repository in the Folder Data. Par and Ort correspond to the parallele and perpendicular positions 
+  
+- Use the script `main_MSD_analysis.m`
+- Set the pixel size `main_MSD_analysis.m` and the integration time `dt`
+
+
 
 # Simulation
 ## Step 1: Generate the trajectories
