@@ -90,14 +90,52 @@ for it = ss+1:1:length(XC)-ss;
         Tout = [ Tout; it];
         Tout15 = [ Tout15;TIME(ID)];
         
-% Calculate alpha per and par in this window
+% Calculate alpha par in this window
+for iii = 1 : length(LagTpar)
+    ii_lin_instantboucle = iii;%(T(ID(iii))-min(T(ID))+1)
+    Paraset2ptsinst = [1 1];
+    if ii_lin_instantboucle==1
+                  XXxx1 =[0,LagTpar([iii:iii])];
+        YYyy1 = [0,MSD_meanpar([iii:iii])];
+        curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
+        [fittedParameters_inst1,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_MSD_intercept0_1D,Paraset2ptsinst, XXxx1,YYyy1,[],[],curvefitoptions);   
+        D_inst1par   = fittedParameters_inst1(1);
+        Time_pour_logpar = [Time_pour_logpar ; ii_lin_instantboucle];
+        Dinst_pour_logpar = [Dinst_pour_logpar;D_inst1par];
+        else
+                    
+          XXxx2 =[0,LagTpar(iii)];
+        YYyy2 = [0,MSD_meanpar(iii)];
+        curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
+        [fittedParameters_inst2,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_MSD_intercept0_1D,Paraset2ptsinst, XXxx2,YYyy2,[],[],curvefitoptions);   
+        D_inst2par   = fittedParameters_inst2(1);
+        Time_pour_logpar = [Time_pour_logpar ; ii_lin_instantboucle];
+        Dinst_pour_logpar = [Dinst_pour_logpar;D_inst2par];
+end
+end
+
+% Calculate alpha per in this window
 for iii = 1 : length(LagTper)
-        D_inst_per_2   = MSD_meanper(iii)./(2.* LagTper(iii));
-        Time_for_log_per = [Time_for_log_per ; iii];
-        Dinst_for_log_per = [Dinst_for_log_per;D_inst_per_2];
-        D_inst2par   = MSD_meanpar(iii)./(2.* LagTpar(iii));
-        Time_for_log_par = [Time_for_log_par ; iii];
-        Dinst_for_log_par = [Dinst_for_log_par;D_inst2par];
+    ii_lin_instantboucle = iii;%(T(ID(iii))-min(T(ID))+1)
+    Paraset2ptsinst = [1 1];
+    if ii_lin_instantboucle==1
+                  XXxx1 =[0,LagTper([iii:iii])];
+        YYyy1 = [0,MSD_meanper([iii:iii])];
+        curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
+        [fittedParameters_inste,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_MSD_intercept0_1D,Paraset2ptsinst, XXxx1,YYyy1,[],[],curvefitoptions);   
+        D_inst1per   = fittedParameters_inste(1);
+        Time_pour_logper = [Time_pour_logper ; ii_lin_instantboucle];
+        Dinst_pour_logper = [Dinst_pour_logper;D_inst1per];
+        else
+                    
+          XXxx2 =[0,LagTper(iii)];
+        YYyy2 = [0,MSD_meanper(iii)];
+        curvefitoptions = optimset('Display','off','MaxFunEvals',10000,'MaxIter',10000,'TolX',1E-30,'TolFun',1E-30);
+        [fittedParameters_inst2e,resnorm,residual,exitflag,output,lambda,jacobian] = lsqcurvefit(@Fit_MSD_intercept0_1D,Paraset2ptsinst, XXxx2,YYyy2,[],[],curvefitoptions);   
+        D_inst2per   = fittedParameters_inst2e(1);
+        Time_pour_logper = [Time_pour_logper ; ii_lin_instantboucle];
+        Dinst_pour_logper = [Dinst_pour_logper;D_inst2par];
+end
 end
 
 %%
@@ -107,7 +145,7 @@ end
     dLog_of_LagTime_per = Log_of_LagTime_per(2:end)-Log_of_LagTime_per(1:end-1);
     dLog_Ratio_D_i_on_D2_inst_per = log(Ratio_D_i_on_D2_inst_per(2:end))-log(Ratio_D_i_on_D2_inst_per(1:end-1));
     pente_per = 1+dLog_Ratio_D_i_on_D2_inst_per./dLog_of_LagTime_per;
-    alpha_local_per = mean(pente_per(1:6));
+    alpha_local_per = mean(pente_per(1:(min_number_point_in_traj-2)./2));
     
     Log_of_LagTime_par = log(Time_for_log_par);
     Ratio_D_i_on_D2_inst_par = [Dinst_for_log_par]./Dinst_for_log_par(1);
@@ -115,7 +153,7 @@ end
     dLog_of_LagTime_par = Log_of_LagTime_par(2:end)-Log_of_LagTime_par(1:end-1);
     dLog_Ratio_D_i_on_D2_inst_par = log(Ratio_D_i_on_D2_inst_par(2:end))-log(Ratio_D_i_on_D2_inst_par(1:end-1));
     pente_par = 1+dLog_Ratio_D_i_on_D2_inst_par./dLog_of_LagTime_par;
-    alpha_local_par = mean(pente_par(1:6));
+    alpha_local_par = mean(pente_par(1:(min_number_point_in_traj-2)./2));
 
     outalpha15 = [outalpha15; [posit(:,1),posit(:,2), alpha_local_par.*ones(size(posit,1),1) alpha_local_per.*ones(size(posit,1),1)]];
     outalphaT15 = [outalphaT15; TIME(ID) alpha_local_par.*ones(size(posit,1),1) alpha_local_per.*ones(size(posit,1),1)];
