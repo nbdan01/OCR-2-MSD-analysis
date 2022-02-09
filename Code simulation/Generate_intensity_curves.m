@@ -9,7 +9,8 @@ mkdir(Foldersavedat)
 load([Folderdatadata,listmatfilesheredtat(1).name]);
 % Collect all the individual position from all the molecules within 
 % a laps of 3 seconds
-frame_num = round(3./dt)
+integration_over_time = 3; % (seconds)
+frame_num = round(integration_over_time./dt)
 for ig = 1111:frame_num:Nstep-frame_num
     Pos_time = [];
     numboftraj = 0;
