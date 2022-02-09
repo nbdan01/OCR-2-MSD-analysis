@@ -1,10 +1,10 @@
 # OCR-2-MSD-analysis
 Calculate diffifusion coefficient and velocity from SPT trajectories
-
+Use the script `main_MSD_analysis.m`
 
 # Simulation
 ## Step 1: Generate the trajectories
-- Use the script `Generate_trajectories.mat`
+- Use the script `Generate_trajectories.m`
 - Choose the Folder to save the trajectories in the variable `Foldersave`
 
 - **Parameters**: Copy Paste your **diffusion coefficient** values (D) and **velocity** values (v), position (X) dependent in the variable `Data_diffusion`, and `Data_antero_velocity` and `Data_velocity_retro`respectively.
@@ -49,7 +49,7 @@ Generated trajectories are saved in the subFolder `Trajectories`
 
 ## Step 2: Generate the intensity profiles 
 
-- Use the script `Intensity_profiles.mat`
+- Use the script `Intensity_profiles.m`
 - Set the integration time in the variable `integration_over_time` to integrate/collect/gather the data points over time and generate the intensity profiles
 Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
@@ -57,7 +57,7 @@ Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number o
 - In the subFolder `Data hist`, **Rename** the `name.mat` files with the format `name (1).mat`, `name (2).mat`, `name (3).mat`, ..., `name (50).mat`...
 
 ## Step 4: Select the steady-state
-- Use the script `Steady_state_intensity_profiles.mat`
+- Use the script `Steady_state_intensity_profiles.m`
 - Set the **Parameters** of the profiles
 
 > - min_X = -2  _(min position)_  
