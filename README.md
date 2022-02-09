@@ -60,9 +60,12 @@ Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number o
 - Use the script `Steady_state_intensity_profiles.mat`
 - Set the **Parameters** of the profiles
 
-> xlim
-> min_X = -2  _(min position)_  
-> max_X = 8  _(max position)_  
-> binsize = 0.1 _(bin size, um)_  
-> smoothval = 5   -> 0.1*5 = 0.5 um in this case _(value used to smooth the histograms)_  
+> - min_X = -2  _(min position)_  
+> - max_X = 8  _(max position)_  
+> - binsize = 0.1 _(bin size, um)_  
+> - smoothval = 5   -> 0.1*5 = 0.5 um in this case _(value used to smooth the histograms)_  
 
+Profiles are saved in the subFolder `Movie`.
+At the beginning, you will see that the profiles are correlated with the initial positions of the molecules.
+- Set the steady state in the variables `time_beginning` and `time_end` as indicated in the profiles legend.
+The average intensity profile during the steady state is saved in a csv file (position (um), mean I, std I)
