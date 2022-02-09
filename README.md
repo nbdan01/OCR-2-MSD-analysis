@@ -1,6 +1,6 @@
 # OCR-2-MSD-analysis
 Calculate location-dependant diffusion coefficient and velocity from SPT trajectories
-## 1 - Format of the Data
+## 1 - Data Format
   Use the template provided in this repository in the Folder Data. Par and Ort correspond to the parallele and perpendicular positions 
 ## 2 - Extract the power (\alpha) of the time lag (\tau) using MSD
 - Use the script `main_MSD_analysis.m`
