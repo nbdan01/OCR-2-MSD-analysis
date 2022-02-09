@@ -4,40 +4,46 @@ Calculate diffifusion coefficient and velocity from SPT trajectories
 
 # Simulation
 ## Step 1: Generate the trajectories
-- Open the script `Generate_trajectories.mat`
+- Use the script `Generate_trajectories.mat`
 - Choose the Folder to save the trajectories in the variable `Foldersave`
 
-- Copy Paste your diffusion coefficient values (D) and velocity values (v), position (X) dependent in the variable `Data_diffusion`, and `Data_antero_velocity` and `Data_velocity_retro respectively`.
-The first column of each variable corresponds to the position (X) and the second column corresponds to the D or v values.
+- **Parameters**: Copy Paste your **diffusion coefficient** values (D) and **velocity** values (v), position (X) dependent in the variable `Data_diffusion`, and `Data_antero_velocity` and `Data_velocity_retro`respectively.
+1st column: X position and 2nd column: D or v values.
+- Choose your **OPTIONs**. You can either
+  1) increase D by a factor `factorDCincrease` for ALL the positions
+  2) increase D in the PCMC by a factor `factorDCincrease_PCMC` 
+  3) set D = 0 for ALL the positions (`nulDiffusionCoefficient = 1`)
 
-D and V are smoothed with an sgolay filter of degree 3 to reduce the noise.
+Note: D and v are smoothed with an sgolay filter of degree 3 to reduce the noise.
+- Set the ratio IFT/Diffusion for each segements (dendrite, PCMC, TZ, PS, DS and Tip)
 
-- Copy paste your ratio between directed and diffusive transport, location dependent in the variable `Percentage_transport_antero`.
-- And indicate the corresponding positions in the variable `Pos_percentage`
+  > Standard OPTION  
+  >
+  > - dendrire_percentage = 1  
+  > - PCMC_percentage = 0  
+  > - TZ_percentage = 1  
+  > - PS_percentage = 0.05  
+  > - DS_percentage = 0.15  
+  > - Tip_percentage = 0  
+  
+- Set the different **parameters** for the simulation
 
-- Do the same for the retrograde directed transport if the ratio is different (not the case here).
+  > - lim_cilia = 7.5   _(Maximal size of the in-silico cilium, um)_  
+  >   
+  > - proba_antero = 1/3   _(Ratio between anterograde and retrograde IFT train frequencies)_  
+  >  
+  > - dt = 0.1   _(Time between 2 consecutives data points, s)_  
+  >  
+  > - Radius = 0.1   _(Radius of the in-silico cilium, um)_   
+  >  
+  > - WW =15   _(Size of the sliding window ( MSD) used to analyse experimental data, frame)_    
+  >  
+  > - maxtraj = 50   _(Number of trajectories per position)_    
+  >  
+  > - Nstep = 5000   _(Maximal number of steps)_  
+  > 
+  > - Precision_localization = 30/1000   _(Precision of localization, um)_    
 
-- Set the different parameters
-
-```
-% Maximal size of the in-silico cilium
-lim_cilia = 7.5;
-% Ratio between anterograde and retrograde IFT train frequencies
-proba_antero = 1/3;
-% Time between 2 consecutives data points
-dt = 0.1;
-Diff_on = [1 0];
-% Radius of the in-silico cilium
-Radius = 0.1;
-% Size of the sliding window ( MSD) used to analyse experimental data 
-WW =15;
-% Maximal number of steps
-Nstep = 5000;
-% Number of trajectories per position
-maxtraj = 50;
-% Precision of localization
-Precision_localization = 30/1000;
-```
 Parameters D and V are saved in the subFolder `Parameters`
 Generated trajectories are saved in the subFolder `Trajectories`
 
