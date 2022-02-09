@@ -54,7 +54,7 @@ Generated trajectories are saved in the subFolder `Trajectories`
 Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
 ## Step 3: Manual renaming of the files
-- Rename the `name.mat` files in the subFolder `Data hist` using the format `name (1)`, `name (2)`, `name (3)`, ..., `name (50)`...
+- In the subFolder `Data hist`, **Rename** the `name.mat` files with the format `name (1).mat`, `name (2).mat`, `name (3).mat`, ..., `name (50).mat`...
 
 ## Step 4: Select the steady-state
 - Run the script `Steady_state_profiles.mat`
