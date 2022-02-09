@@ -57,6 +57,12 @@ Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number o
 - In the subFolder `Data hist`, **Rename** the `name.mat` files with the format `name (1).mat`, `name (2).mat`, `name (3).mat`, ..., `name (50).mat`...
 
 ## Step 4: Select the steady-state
-- Use the script `Steady_state_profiles.mat`
+- Use the script `Steady_state_intensity_profiles.mat`
+- Set the **Parameters** of the profiles
 
+> xlim
+> min_X = -2  _(min position)_  
+> max_X = 8  _(max position)_  
+> binsize = 0.1 _(bin size, um)_  
+> smoothval = 5   -> 0.1*5 = 0.5 um in this case _(value used to smooth the histograms)_  
 
