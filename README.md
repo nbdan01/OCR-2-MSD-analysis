@@ -47,8 +47,8 @@ Generated trajectories are saved in the subFolder `Trajectories`
 - Set the integration time in the variable `frame_num` to integrate/collect/gather the data points over time and make the profiles
 The profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
-## Step 3: Manual sorting of the profiles
-- Sort the `.mat` in the subFolder `Data hist` by Creation Date and rename the files using the format `name (1)`, `name (2)`, `name (3)`, ..., `name (50)`...
+## Step 3: Manual renaming of the files
+- Rename the `name.mat` files in the subFolder `Data hist` using the format `name (1)`, `name (2)`, `name (3)`, ..., `name (50)`...
 
 ## Step 4: Select the steady-state
 - Run the script `Steady_state_profiles.mat`
