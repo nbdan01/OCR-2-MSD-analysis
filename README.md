@@ -47,11 +47,11 @@ Note: D and v are smoothed with an sgolay filter of degree 3 to reduce the noise
 Parameters D and V are saved in the subFolder `Parameters`
 Generated trajectories are saved in the subFolder `Trajectories`
 
-## Step 2: Create the time-dependent intensity/number of molecules profiles 
+## Step 2: Generate the intensity profiles 
 
-- Open the script `Intensity_profiles.mat`
-- Set the integration time in the variable `frame_num` to integrate/collect/gather the data points over time and make the profiles
-The profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
+- Use the script `Intensity_profiles.mat`
+- Set the integration time in the variable `integration_over_time` to integrate/collect/gather the data points over time and generate the intensity profiles
+Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
 ## Step 3: Manual renaming of the files
 - Rename the `name.mat` files in the subFolder `Data hist` using the format `name (1)`, `name (2)`, `name (3)`, ..., `name (50)`...
