@@ -20,12 +20,12 @@ Fffoldersaveall = 'E:\Modeling OCR2\OCR2\OCR2 modeling\Compilation all smooth hi
 clearvars
 close all
 % Folder data
-% FFolderdataIFT = 'D:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results no diffusion\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-FFolderdataIFT = 'D:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results\Trajectories proba antero retro 0p3 5000 steps 6\Compilation\Data\';
+FFolderdataIFT = 'D:\Modeling OCR2\Results\Trajectories proba antero retro 0p3 5000 steps\Data hist\';
 
 % Foldersave
-Fffoldersaveall = 'D:\Modeling OCR2\Paper data\';
+Fffoldersaveall = [FFolderdataIFT, 'Intensity curves\'];
 mkdir(Fffoldersaveall)
+% Additional subfolder name if needed
 FoldersavedatIFT = [Fffoldersaveall,'entry\IFT\'];
 mkdir(FoldersavedatIFT)
 
