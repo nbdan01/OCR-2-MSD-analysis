@@ -5,7 +5,8 @@ Calculate location-dependant diffusion coefficient and velocity from SPT traject
 ## 2 - Extract the power (\alpha) of the time lag (\tau) using MSD
 - Use the script `main_MSD_analysis.m`
 - Set the pixel size `pxlSize` and the integration time `dt`
-## 3 - 
+## 3 - Classification between directed and diffusive transport
+  Use the script `Classification_compilation.m`
 
 
 
@@ -26,32 +27,25 @@ Calculate location-dependant diffusion coefficient and velocity from SPT traject
 Note: D and v are smoothed with an sgolay filter of degree 3 to reduce the noise.
 - Set the ratio IFT/Diffusion for each segements (dendrite, PCMC, TZ, PS, DS and Tip)
 
-  > Standard OPTION  
-  >
-  > - dendrire_percentage = 1  
-  > - PCMC_percentage = 0  
-  > - TZ_percentage = 1  
-  > - PS_percentage = 0.05  
-  > - DS_percentage = 0.15  
-  > - Tip_percentage = 0  
+ > Standard OPTION  
+ >
+ > - dendrire_percentage = 1  
+ > - PCMC_percentage = 0  
+ > - TZ_percentage = 1  
+ > - PS_percentage = 0.05  
+ > - DS_percentage = 0.15  
+ > - Tip_percentage = 0  
   
 - Set the different **parameters** for the simulation
 
-  > - lim_cilia = 7.5   _(Maximal size of the in-silico cilium, um)_  
-  >   
-  > - proba_antero = 1/3   _(Ratio between anterograde and retrograde IFT train frequencies)_  
-  >  
-  > - dt = 0.1   _(Time between 2 consecutives data points, s)_  
-  >  
-  > - Radius = 0.1   _(Radius of the in-silico cilium, um)_   
-  >  
-  > - WW =15   _(Size of the sliding window ( MSD) used to analyse experimental data, frame)_    
-  >  
-  > - maxtraj = 50   _(Number of trajectories per position)_    
-  >  
-  > - Nstep = 5000   _(Maximal number of steps)_  
-  > 
-  > - Precision_localization = 30/1000   _(Precision of localization, um)_    
+ > - lim_cilia = 7.5   _(Maximal size of the in-silico cilium, um)_  
+ > - proba_antero = 1/3   _(Ratio between anterograde and retrograde IFT train frequencies)_  
+ > - dt = 0.1   _(Time between 2 consecutives data points, s)_  
+ > - Radius = 0.1   _(Radius of the in-silico cilium, um)_   
+ > - WW =15   _(Size of the sliding window ( MSD) used to analyse experimental data, frame)_    
+ > - maxtraj = 50   _(Number of trajectories per position)_    
+ > - Nstep = 5000   _(Maximal number of steps)_  
+ > - Precision_localization = 30/1000   _(Precision of localization, um)_    
 
 Parameters D and V are saved in the subFolder `Parameters`
 Generated trajectories are saved in the subFolder `Trajectories`
@@ -67,7 +61,7 @@ Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number o
 
 ## 4 - Select the steady-state
 - Use the script `Steady_state_intensity_profiles.m`
-- Set the **Parameters** of the profiles
+- Set the **Parameters** to plot the profiles
 
 > - min_X = -2  _(min position)_  
 > - max_X = 8  _(max position)_  
