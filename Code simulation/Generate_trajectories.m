@@ -4,7 +4,7 @@ Foldersave = 'D:\Modeling OCR2\Results\';
 FoldersaveParam = [Foldersave,'Parameters\'];
 mkdir(Foldersave)
 mkdir(FoldersaveParam)
-FolderSavehere = [Foldersave,'Trajectories proba antero retro 0p3 5000 steps\'];
+FolderSavehere = [Foldersave,'Trajectories\'];
 mkdir(FolderSavehere)
 
 %% Parameters Diffusion Coefficient
