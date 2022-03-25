@@ -11,7 +11,7 @@ load([Folderdatadata,listmatfilesheredtat(1).name]);
 % a laps of 3 seconds
 integration_over_time = 3; % (seconds)
 frame_num = round(integration_over_time./dt)
-for ig = 1111:frame_num:Nstep-frame_num
+for ig = 1:frame_num:Nstep-frame_num
     Pos_time = [];
     numboftraj = 0;
     for ithad = 1: size(listmatfilesheredtat,1)
