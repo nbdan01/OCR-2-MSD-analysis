@@ -42,6 +42,8 @@ Pos_timeIFT = Position_on_this_laps_time;%Pos_time;
 
 clear Position_on_this_laps_time Pos_time
 
+% Calculate histogram
+[xx,nn] = hist(Pos_timeIFT,[min_X:binsize:max_X]);
 % store the histograms with time, x position, and occurrence
 DataforIFT = [DataforIFT;str2num(numberhistIFT).*ones(size(smooth(nn,smoothval),1),1) smooth(nn,smoothval) smooth(xx,smoothval)./sum(xx)];
 
@@ -51,8 +53,8 @@ DataforIFT = [DataforIFT;str2num(numberhistIFT).*ones(size(smooth(nn,smoothval),
 % Folder
 figure(11)
 hold off
-[xx2,nn2] = hist(Pos_timeIFT,[min_X:binsize:max_X]);
-plot(smooth(nn2,smoothval),smooth(xx2,smoothval),'color', [0.7 0.7 0.7], 'linewidth',1.5)
+
+plot(smooth(nn,smoothval),smooth(xx,smoothval),'color', [0.7 0.7 0.7], 'linewidth',1.5)
 hold on
 xlabel('Position \mum')
 ylabel('Occurrence')
