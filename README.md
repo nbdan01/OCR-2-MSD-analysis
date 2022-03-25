@@ -52,7 +52,7 @@ Generated trajectories are saved in the subFolder `Trajectories`
 
 ## 2 - Generate the intensity profiles 
 
-- Use the script `Intensity_profiles.m`
+- Use the script `Generate_intensity_curves.m`
 - Set the integration time in the variable `integration_over_time` to integrate/collect/gather the data points over time and generate the intensity profiles
 Profiles are saved in the subFolder `Data hist` with the format `Dat_ + number of the first frame + .mat`
 
