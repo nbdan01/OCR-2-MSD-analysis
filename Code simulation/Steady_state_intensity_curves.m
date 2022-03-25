@@ -1,21 +1,3 @@
-clearvars
-close all
-% FFolderdatanoIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_05_06 Results no IFT\Trajectories proba antero retro 0p3 5000 steps 6\copy data hist\';
-% FFolderdatanoIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_05_06 Results TZ only IFT\Trajectories proba antero retro 0p3 5000 steps 6\';
-
-% FFolderdataIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results\Trajectories proba antero retro 0p3 5000 steps 6\Compilation\Data\';
-% FFolderdataIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results diff PCMC x2\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-FFolderdataIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results diff cst 0\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-FFolderdatanoIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results no diffusion\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-% FFolderdatanoIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_03_30 Results DC all factor 3 V2\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-
-% FFolderdatanoIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_05_06 Results no IFT without automatic entry of mol\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-% FFolderdataIFT = 'E:\Modeling OCR2\OCR2\OCR2 modeling\2021_05_06 Results without automatic entry of mol\Trajectories proba antero retro 0p3 5000 steps 6\Data hist\';
-
-Fffoldersaveall = 'E:\Modeling OCR2\OCR2\OCR2 modeling\Compilation all smooth histo\';
-%%
-% FFolderdataIFT = 'D:\Modeling OCR2\Results\Trajectories proba antero retro 0p3 5000 steps\Data hist\';
-
 %%
 clearvars
 close all
